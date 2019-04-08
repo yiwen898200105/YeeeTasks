@@ -1,0 +1,683 @@
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC");
+html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,
+b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed,figure, figcaption, footer, header, hgroup,menu, nav, output, ruby, section, summary,
+time, mark, audio, video{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-weight:normal;
+	background: transparent;
+	font-family: 'Oswald', 'Futura', oto Sans TC;
+	
+	}
+	
+html,body{position: relative; width: 100%;height: 100%;min-width: 320px;}
+html{font-family: Oswald,Futura,"Noto Sans TC",sans-serif;font-size: 16px;}
+body{font-size:1rem;background-color: #f7f7f7;-webkit-text-size-adjust: none;}
+hr{display: block;height: 1px;border: 0;border-top: 1px solid #ccc;margin: 1rem 0;padding: 0;}
+.clear{clear: both;}
+ 
+ 
+ /*滾動條整體部分*/
+::-webkit-scrollbar {
+		  width: 7px;
+		  height:7px;
+	}
+/*滾動條的滑軌背景*/	
+::-webkit-scrollbar-track {
+		  background-color: inherit;
+	}
+/*滑塊*/
+	::-webkit-scrollbar-thumb {
+		  background-color: rgba(0, 0, 0, 0.2);
+		  border-radius:15px;
+		  
+	}
+/*滑軌兩頭的監聽按鈕*/
+	::-webkit-scrollbar-button {
+		  background-color: inherit;
+	}
+ /*橫向滾動條和縱向滾動條相交處尖角*/
+	::-webkit-scrollbar-corner {
+		  background-color: black;
+		  border-radius:10px;
+	}
+
+ 
+	
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*背景*/
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: #9FDBD1;
+  overflow: auto;
+  padding: 25px 0;
+  box-sizing: border-box;
+}
+/*姓名標題*/
+.title {
+  padding: 20px 0;
+  background-color:#121259;
+  
+}
+/*外框*/
+.title, .wrap {
+  width: 60%;
+  margin: 0px auto 20px;
+  text-align: center;
+  border: 5px solid #121259;
+  box-sizing: border-box;
+  color: white;
+}
+
+.todo-option {
+  width: 100%;
+  padding: 10px 0;
+  overflow: auto;
+  background-color: #f26768;
+  border-bottom: 5px solid #121259;
+  text-align: center;
+}
+
+.todo-option li {
+  display: inline-block;
+  margin: 0 50px;
+  padding: 0 5px;
+  text-transform: uppercase;
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform .5s ease;
+  -webkit-transition: transform .5s ease;
+  -moz-transition: transform .5s ease;
+  -o-transition: transform .5s ease;
+}
+
+.todo-option li:hover {
+  transform: scale(1.125);
+  -webkit-transform: scale(1.125); /*-webkit代表google【chrome】/蘋果【safari】内核識別碼*/
+  -moz-transform: scale(1.125); /*-moz代表火狐【firefox】内核識別碼*/
+  -ms-transform: scale(1.125); /*-ms代表【ie】内核識別碼*/
+  -o-transform: scale(1.125); /*-o代表【opera】内核識別碼*/
+}
+
+.todo-option li.active {
+  border-bottom: 3px solid #FFC038;
+}
+/*中間的容納區域*/
+.todo-content {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  border-bottom: 5px solid #121259;
+  background-color: #f26768;
+  overflow: hidden;
+}
+
+.todo-all, .todo-pending, .todo-done {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 85%;
+  height: 350px;
+  margin: 10px auto;
+  padding: 10px;
+  border: 5px solid #121259;
+  overflow: scroll;
+  opacity: 0;
+  transform: translateX(-1100px);
+  -webkit-transform: translateX(-1100px);
+  -moz-transform: translateX(-1100px);
+  -ms-transform: translateX(-1100px);
+  -o-transform: translateX(-1100px);
+  transition: all .9s ease;
+  -webkit-transition: all .9s ease;
+  -moz-transition: all .9s ease;
+  -ms-transition: all .9s ease;
+  -o-transition: all .9s ease;
+}
+  
+     
+
+
+.todo-all.active,
+.todo-pending.active,
+.todo-done.active {
+  opacity: 1;
+  transform: translateX(0);
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+}
+
+.todo-all li, .todo-pending li, .todo-done li {
+  text-align: left;
+  border: 1px solid;
+  padding: 15px;
+  margin-bottom: 10px;
+  overflow: auto;
+}
+
+.todo-all li p, .todo-pending li p, .todo-done li p {
+  float: left;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.todo-all .icon, .todo-pending .icon, .todo-done .icon {
+  float: right;
+  font-size: 20px;
+}
+/*鉛筆&垃圾桶圖標轉場*/
+.todo-all .icon img {
+  cursor: pointer;
+  margin: 0 10px;
+  transition: all .5s ease;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  -o-transition: all .5s ease;
+}
+/*鉛筆&垃圾桶圖標放大*/
+.todo-all .icon img:hover {
+  transform: scale();
+  -webkit-transform: scale(1.125);
+  -moz-transform: scale(1.125);
+  -ms-transform: scale(1.125);
+  -o-transform: scale(1.125);
+  color: #2ebd59;
+}
+/*代辦事項done轉場*/
+.todo-pending .icon p,.todo-done .icon p {
+  cursor: pointer;
+  transition: all .5s ease;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  -o-transition: all .5s ease;
+}
+/*代辦事項done放大*/
+.todo-pending .icon p:hover, .todo-done .icon p:hover {
+  color: #FFC038;
+  transform: scale(1.125);
+  -webkit-transform: scale(1.125);
+  -moz-transform: scale(1.125);
+  -ms-transform: scale(1.125);
+  -o-transform: scale(1.125);-
+}
+
+.add-todo {
+  position: relative;
+  width: 100%;
+  height: 80px;
+  background: #FFC038;
+  overflow: ;
+}
+
+.add-todo .todo-info {
+  position: absolute;
+  top: 0px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  font-size: 35px;
+  opacity: 0;
+  transform: translateY(-100px);
+  -webkit-transform: translateY(-100px);
+  -moz-transform: translateY(-100px);
+  -ms-transform: translateY(-100px);
+  -o-transform: translateY(-100px);
+  transition: all .5s ease;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  cursor: pointer;
+}
+
+.add-todo .todo-form, .add-todo .todo-updata {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transform: translateY(-100px);
+  -webkit-transform: translateY(-100px);
+  -moz-transform: translateY(-100px);
+  -ms-transform: translateY(-100px);
+  -o-transform: translateY(-100px);
+  transition: all .5s ease;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  cursor: pointer;
+}
+
+.add-todo .todo-info.active,
+.add-todo .todo-form.active,
+.add-todo .todo-updata.active {
+  opacity: 1;
+  transform: translateY(10px);
+  -webkit-transform: translateY(10px);
+  -moz-transform: translateY(10px);
+  -ms-transform: translateY(10px);
+  -o-transform: translateY(10px);
+}
+
+.add-todo .todo-form input[type="text"], .add-todo .todo-updata input[type="text"], .title-form input[type="text"] {
+  width: 250px;
+  height: 50px;
+  border: 5px solid #9FDBD1;
+  padding-left: 10px;
+  font-size: 20px;
+  margin-right: 20px;
+  vertical-align: top;
+  border-radius:10px;
+}
+.add-todo .todo-form input[type="submit"], .add-todo .todo-updata input[type="submit"]{
+  display: inline-block;
+  width: 120px;
+  height: 62px;
+  line-height: 20px;
+  border: 5px solid #9FDBD1;
+  font-size: 25px;
+  vertical-align: top;
+  background-color:#fff;
+  text-align: center;
+  margin-right: 20px;
+  border-radius:15px;
+} 
+.title-form input[type="submit"] {
+  display: inline-block;
+  width: 120px;
+  height: 62px;
+  line-height: 20px;
+  border: 5px solid #9FDBD1;
+  font-size: 25px;
+  vertical-align: top;
+  background-color: inherit;
+  text-align: center;
+  margin-right: 20px;
+  border-radius:15px;
+}
+
+.title-form input[type="submit"]:hover {
+  background-color:#FFC038;
+}
+.add-todo .todo-form input[type="submit"]:hover, .add-todo .todo-updata input[type="submit"]:hover{
+  background-color:#9FDBD1;
+}
+
+.add-todo .todo-form img, .add-todo .todo-updata img {
+  display: inline-block;
+  font-size: 60px;
+  cursor: pointer;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -o-transition: all.5s ease;
+  transition: all .5s ease;
+}
+
+
+
+
+.light-box {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 100;
+  box-sizing: border-box;
+}
+
+.light-box .user-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 200px;
+  margin-top: -100px;
+  margin-left: -250px;
+  padding: 35px 0;
+  border: 3px solid #9FDBD1;
+  font-size: 25px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.user-title p {
+  color: white;
+}
+
+.title-form {
+  width: 100%;
+  margin: 20px auto;
+}
+/*okay字體顏色*/
+.title-form input[type="submit"] {
+  color: white;
+}
+/*done*/
+.todo-pending .icon, .todo-done .icon {
+  border: 1px solid white;
+  padding: 0 10px;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+}
+
+
+img {
+	width: 20px;
+	height: 20px;
+}
+
+/* Larger screens act like a demo for the app */
+
+@media only screen and (min-width: 960px) {
+  #container {
+    max-width: 480px;
+    margin: 20px auto 20px auto;
+  }
+
+ .light-box{
+	
+    padding: 0;
+    height: 100vh;
+  }	
+  .title {
+    padding: 10px 0;
+    font-size: 14px;
+  }
+  .light-box .user-title {
+	 top: 50%;
+	
+  }
+  .todo-option li {
+	display: inline-block;
+	margin: 0 30px;
+	padding: 0 10px;
+	text-transform: uppercase;
+	font-size: 20px;
+	cursor: pointer;
+	transition: transform .5s ease;
+	-webkit-transition: transform .5s ease;
+	-moz-transition: transform .5s ease;
+	-o-transition: transform .5s ease;
+}
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+.light-box{
+	
+    padding: 0;
+    height: 100vh;
+  }	
+  .light-box .user-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 350px;
+    height: 200px;
+    margin-top: -100px;
+    margin-left: -175px;
+    padding: 35px 0;
+    border: 2px solid #9FDBD1;
+    font-size: 25px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .title-form input[type="text"] {
+    width: 200px;
+    height: 50px;
+    border: 3px solid #9FDBD1;
+    padding-left: 10px;
+    font-size: 15px;
+    margin-right: 5px;
+    vertical-align: top;
+  }
+
+  .title-form input[type="submit"] {
+    display: inline-block;
+    width: 60px;
+    height: 55px;
+    line-height: 20px;
+    border: 3px solid #9FDBD1;
+    font-size: 15px;
+    vertical-align: top;
+    background-color: inherit;
+    text-align: center;
+    margin-right: 5px;
+  }
+
+  .add-todo .todo-form input[type="text"], .add-todo .todo-updata input[type="text"] {
+    width: 180px;
+    height: 50px;
+    border: 3px solid #9FDBD1;
+    padding-left: 10px;
+    font-size: 15px;
+    margin-right: 5px;
+    vertical-align: top;
+	
+  }
+
+  .add-todo .todo-form input[type="submit"], .add-todo .todo-updata input[type="submit"] {
+    display: inline-block;
+    width: 60px;
+    height: 55px;
+    line-height: 20px;
+    border: 3px solid #9FDBD1;
+    font-size: 12px;
+    vertical-align: top;
+    background-color: inherit;
+    text-align: center;
+    margin-right: 5px;
+  }
+  
+    .add-todo .todo-info {
+    position: absolute;
+    top: 15px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    font-size: 20px;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .todo-option li {
+	display: inline-block;
+	margin: 0 20px;
+	padding: 0 10px;
+	text-transform: uppercase;
+	font-size: 20px;
+	cursor: pointer;
+	transition: transform .5s ease;
+	-webkit-transition: transform .5s ease;
+	-moz-transition: transform .5s ease;
+	-o-transition: transform .5s ease;
+}
+
+
+}
+
+
+
+@media only screen and (min-width: 501px) and (max-width: 767px) {
+	.light-box{
+	
+    padding: 0;
+    height: 100vh;
+  }	
+  
+	.todo-option li {
+    display: block;
+    margin: 10px 80px;
+    font-size: 20px;
+  }
+  .todo-all .icon, .todo-pending .icon, .todo-done .icon {
+    float: none;
+    font-size: 20px;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .todo-all li p, .todo-pending li p, .todo-done li p {
+    float: none;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .todo-all .icon i {
+    cursor: pointer;
+    margin: 0 10px 0 0;
+  }
+
+  .add-todo .todo-info {
+    position: absolute;
+    top: 15px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    font-size: 20px;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .add-todo .todo-form input[type="text"], .add-todo .todo-updata input[type="text"] {
+    width: 120px;
+    height: 50px;
+    border: 3px solid #9FDBD1;
+    padding-left: 10px;
+    font-size: 15px;
+    margin-right: 5px;
+    vertical-align: top;
+  }
+
+  .add-todo .todo-form input[type="submit"], .add-todo .todo-updata input[type="submit"] {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    line-height: 20px;
+    border:3px solid #9FDBD1;
+    font-size: 12px;
+    vertical-align: top;
+    background-color: inherit;
+    text-align: center;
+    margin-right: 5px;
+  }
+
+  .add-todo .todo-form i, .add-todo .todo-updata i {
+    display: inline-block;
+    font-size: 50px;
+    cursor: pointer;
+  }
+  
+
+@media only screen and (max-width: 500px) {
+  .light-box{
+	
+    padding: 0;
+    height: 100vh;
+  }	
+  
+  .todo-option li {
+    display: block;
+    margin: 10px 80px;
+    font-size: 16px;
+  }
+
+  .light-box .user-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 290px;
+    height: 200px;
+    margin-top: -100px;
+    margin-left: -145px;
+    padding: 35px 0;
+    border: 2px solid #9FDBD1;
+    font-size: 25px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+   .title-form input[type="text"] {
+    width: 120px;
+    height: 50px;
+    border: 3px solid #9FDBD1;
+    padding-left: 10px;
+    font-size: 15px;
+    margin-right: 5px;
+    vertical-align: top;
+  }
+
+  .title-form input[type="submit"] {
+    display: inline-block;
+    width: 60px;
+    height: 55px;
+    line-height: 20px;
+    border: 3px solid #9FDBD1;
+    font-size: 15px;
+    vertical-align: top;
+    background-color: inherit;
+    text-align: center;
+    margin-right: 5px;
+  }
+
+  .add-todo .todo-form input[type="text"], .add-todo .todo-updata input[type="text"] {
+    width: 100px;
+    height: 50px;
+    border: 3px solid #9FDBD1;
+    padding-left: 10px;
+    font-size: 13px;
+    margin-right: 5px;
+    vertical-align: top;
+  }
+
+  .add-todo .todo-form input[type="submit"], .add-todo .todo-updata input[type="submit"] {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    line-height: 20px;
+    border: 3px solid #9FDBD1;
+    font-size: 12px;
+    vertical-align: top;
+    background-color: inherit;
+    text-align: center;
+    margin-right: 5px;
+  }
+  
+    .add-todo .todo-info {
+    position: absolute;
+    top: 15px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    font-size: 18px;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+}
+
+

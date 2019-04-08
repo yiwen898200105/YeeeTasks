@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv ="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=1" />
+	<link rel="stylesheet" href="css/itemlist3.css" />
+	<link rel="shortcut icon" href="images/itemlistlogo.png">
+    <title>ItemList</title>
+  </head>
+  <body>
+    <div class="container">
+    <div class="title">
+      <h1>Hello, 歡迎使用 Todo App</h1>
+    </div>
+
+    <div class="wrap">
+      <ul class="todo-option">
+        <li class="active">所有事項</li>
+        <li>待辦事項</li>
+        <li>完成事項</li>
+      </ul>
+
+      <div class="todo-content">
+        <ul class="todo-all active">
+         
+		  <li class="id_1">
+            <p>練習 Javascript</p>
+            <div class="icon">
+              <img src="images/pencil.png" class="pencil">
+              <img src="images/trash.png" class="trash">
+            </div>
+          </li>
+          <li class="id_2">
+            <p>練習 Jquery</p>
+            <div class="icon">
+              <img src="images/pencil.png" class="pencil">
+              <img src="images/trash.png" class="trash">
+            </div>
+          </li>
+		
+        </ul>
+
+        <ul class="todo-pending">
+          <li class="id_2">
+            <p>練習 Jquery</p>
+            <div class="icon">
+              <p>DONE?</p>
+            </div>
+          </li>
+        </ul>
+
+        <ul class="todo-done">
+          <li class="id_1">
+            <p>練習 Javascript</p>
+            <div class="icon">
+              <p>NO DONE?</p>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+
+      <div class="add-todo">
+        <div class="todo-info active">新增待辦項目</div>
+        <div class="todo-form">
+          <input type="text" placeholder="do something?" class="new-field">
+          <input type="submit" value="submit" class="new-btn">
+          <img src="images/todo.png" class="cancel">
+        </div>
+        <div class="todo-updata">
+          <input type="text" placeholder="do something?" class="updata-field">
+          <input type="submit" value="submit" class="updata-btn">
+          <img src="images/todo.png" class="cancel">
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="light-box">
+    <div class="user-title">
+      <p>WHAT IS YOUR NAME?</p>
+      <div class="title-form">
+        <input type="text" placeholder="USERNAME" class="title-field">
+        <input type="submit" value="OKAY" class="title-btn">
+      </div>
+    </div>
+  </div>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/itemlist3.js"></script>
+  </body>
+</html>
